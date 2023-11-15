@@ -1,0 +1,50 @@
+CREATE TABLE actors (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    actorname TEXT,
+    age INTEGER);
+    
+INSERT INTO actors (actorname, age) VALUES ("Robert de Niro", "72");
+INSERT INTO actors (actorname, age) VALUES ("Ben Affleck", "52");
+INSERT INTO actors (actorname, age) VALUES ("Al Pacino", "70");
+INSERT INTO actors (actorname, age) VALUES ("James Bond", "90");
+INSERT INTO actors (actorname, age) VALUES ("TOM Hanks", "42");
+
+CREATE table movies (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    actor_id INTEGER,
+    name TEXT);
+    
+INSERT INTO movies (actor_id, name) VALUES (1, "The Godfather");
+INSERT INTO movies (actor_id, name) VALUES (1, "saving private Ryan");
+INSERT INTO movies (actor_id, name) VALUES (2, "dancing on the moon");
+INSERT INTO movies (actor_id, name) VALUES (2, "operation taykoon");
+INSERT INTO movies (actor_id, name) VALUES (3, "heat");
+INSERT INTO movies (actor_id, name) VALUES (3, "running");
+INSERT INTO movies (actor_id, name) VALUES (3, "Washington Fall");
+INSERT INTO movies (actor_id, name) VALUES (4, "Iraq");
+INSERT INTO movies (actor_id, name) VALUES (4, "See Beyond");
+INSERT INTO movies (actor_id, name) VALUES (4, "The Old Man and the Sea");
+
+CREATE table co_stars (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    actor1_id INTEGER,
+    actor2_id INTEGER);
+    
+    INSERT INTO co_stars  (actor1_id, actor2_id)
+    VALUES (1, 4);
+INSERT INTO co_stars  (actor1_id, actor2_id)
+    VALUES (2, 3);
+
+SELECT a.actorname, m.name
+FROM actors a
+JOIN movies m
+ON a.id=m.actor_id;
+
+
+
+ SELECT a.actorname, b.actorname
+    FROM co_stars
+    JOIN actors a
+    ON a.id = co_stars.actor1_id
+    JOIN actors b
+    ON b.id = co_stars.actor2_id;
